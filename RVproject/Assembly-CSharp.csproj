@@ -63,10 +63,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\HandPresence.cs" />
+    <Compile Include="Assets\RayCursor.cs" />
+    <Compile Include="Assets\Scripts\HandPresence.cs" />
+    <Compile Include="Assets\Scripts\Menu.cs" />
+    <Compile Include="Assets\Scripts\Pointer.cs" />
     <Compile Include="Assets\Scripts\SelectionManager.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Scripts\complexSphere.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\XRGUI.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
