@@ -15,8 +15,8 @@ public class HandPresence : MonoBehaviour
     private InputDevice targetDevice;
     private GameObject spawnedHandModel;
     private Animator handAnimator;
-    private GameObject RayCursor;
-    private RayCursor RayCursorScript;
+    private GameObject BubbleCursor;
+    private BubbleCursor BubbleCursorScript;
 
     // Start is called before the first frame update
     void Start()
@@ -53,8 +53,8 @@ public class HandPresence : MonoBehaviour
 
             }
         }
-        RayCursor = GameObject.Find("Pointer/RayCursor");
-        RayCursorScript = RayCursor.GetComponent<RayCursor>();
+        BubbleCursor = GameObject.Find("BubblePointer/BubbleCursor");
+        BubbleCursorScript = BubbleCursor.GetComponent<BubbleCursor>();
         //spawnedHandModel = Instantiate(controllerPrefabs[0], transform);
         //handAnimator = spawnedHandModel.GetComponent<Animator>();
 
@@ -91,7 +91,7 @@ public class HandPresence : MonoBehaviour
             if (targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 primary2DAxisValue) && primary2DAxisValue != Vector2.zero)
             {
                 Debug.Log("Primary Touchedpad  " + primary2DAxisValue);
-                RayCursorScript.changePosition(primary2DAxisValue);
+                BubbleCursorScript.changePosition(primary2DAxisValue);
             }
 
             /*targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue);
@@ -100,15 +100,22 @@ public class HandPresence : MonoBehaviour
 
             if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0.1f)
             {
-                Debug.Log("Trigger pressed " + triggerValue);
-                if (Menu.trigger)
-                    Menu.trigger = false;
-                else
-                    Menu.trigger = true;
-                RayCursorScript.onTriggerSelect();
+
+                SendHapticImpulse(0.5f, 1);
+                BubbleCursorScript.onTriggerSelect();
             }
             
         }
 
+    }
+    public bool SendHapticImpulse(float amplitude, float duration)
+    {
+        HapticCapabilities capabilities;
+        if (targetDevice.TryGetHapticCapabilities(out capabilities) &&
+            capabilities.supportsImpulse)
+        {
+            return targetDevice.SendHapticImpulse(0, amplitude, duration);
+        }
+        return false;
     }
 }

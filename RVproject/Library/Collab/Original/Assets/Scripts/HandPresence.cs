@@ -5,10 +5,9 @@ using UnityEngine;
 using UnityEngine.XR;
 using Debug = UnityEngine.Debug;
 
-
-
 public class HandPresence : MonoBehaviour
 {
+    public Menu menu;
 
     public InputDeviceCharacteristics controllerCharacteristics;
     public List<GameObject> controllerPrefabs;
@@ -17,7 +16,8 @@ public class HandPresence : MonoBehaviour
     private GameObject spawnedHandModel;
     private Animator handAnimator;
     private GameObject RayCursor;
-    
+    private RayCursor RayCursorScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +53,8 @@ public class HandPresence : MonoBehaviour
 
             }
         }
-        RayCursor = GameObject.Find("RayCursor");
+        RayCursor = GameObject.Find("DepthRay/RayCursor");
+        RayCursorScript = RayCursor.GetComponent<RayCursor>();
         //spawnedHandModel = Instantiate(controllerPrefabs[0], transform);
         //handAnimator = spawnedHandModel.GetComponent<Animator>();
 
@@ -82,15 +83,6 @@ public class HandPresence : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (menu.getTrigger())
-                menu.setTrigger(false);
-            else
-                menu.setTrigger(true);
-
-        */
-
         if (!targetDevice.isValid)
             TryInitialize();
         else
@@ -99,9 +91,7 @@ public class HandPresence : MonoBehaviour
             if (targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 primary2DAxisValue) && primary2DAxisValue != Vector2.zero)
             {
                 Debug.Log("Primary Touchedpad  " + primary2DAxisValue);
-                RayCursor.transform.position = new Vector3(RayCursor.transform.position.x,
-                    RayCursor.transform.position.y,
-                    RayCursor.transform.position.z + primary2DAxisValue.x);
+                RayCursorScript.changePosition(primary2DAxisValue);
             }
 
             /*targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue);
@@ -111,7 +101,21 @@ public class HandPresence : MonoBehaviour
             if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0.1f)
             {
                 Debug.Log("Trigger pressed " + triggerValue);
+                SendHapticImpulse(0.5f,1);
+                RayCursorScript.onTriggerSelect();
             }
             
-        }   }
+        }
+
+    }
+    public bool SendHapticImpulse(float amplitude, float duration)
+    {
+        HapticCapabilities capabilities;
+        if (targetDevice.TryGetHapticCapabilities(out capabilities) &&
+            capabilities.supportsImpulse)
+        {
+            return targetDevice.SendHapticImpulse(0, amplitude, duration);
+        }
+        return false;
+    }
 }

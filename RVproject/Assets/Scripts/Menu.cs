@@ -1,20 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
 public class Menu : MonoBehaviour
 {
 
-    public static bool trigger = false;
+    public bool trigger = false;
     public static bool isMenu = false;
 
     public GameObject thisMenuUI;
+
+ 
+
+    public bool getTrigger()
+    {
+        return trigger;
+    }
+    public void setTrigger(bool t)
+    {
+        trigger = t;
+    }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (trigger)
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        //if(trigger)
         {
             if (Menu.isMenu)
             {
@@ -29,6 +44,7 @@ public class Menu : MonoBehaviour
         }
     }
 
+
     void Resume()
     {
         thisMenuUI.SetActive(false);
@@ -42,4 +58,5 @@ public class Menu : MonoBehaviour
         Time.timeScale = 0f;
         isMenu = true;
     }
+
 }

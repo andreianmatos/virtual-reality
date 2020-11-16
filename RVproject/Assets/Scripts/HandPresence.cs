@@ -53,7 +53,7 @@ public class HandPresence : MonoBehaviour
 
             }
         }
-        RayCursor = GameObject.Find("Pointer/RayCursor");
+        RayCursor = GameObject.Find("DepthRay/RayCursor");
         RayCursorScript = RayCursor.GetComponent<RayCursor>();
         //spawnedHandModel = Instantiate(controllerPrefabs[0], transform);
         //handAnimator = spawnedHandModel.GetComponent<Animator>();
@@ -101,14 +101,21 @@ public class HandPresence : MonoBehaviour
             if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0.1f)
             {
                 Debug.Log("Trigger pressed " + triggerValue);
-                if (Menu.trigger)
-                    Menu.trigger = false;
-                else
-                    Menu.trigger = true;
+                SendHapticImpulse(0.5f,1);
                 RayCursorScript.onTriggerSelect();
             }
             
         }
 
+    }
+    public bool SendHapticImpulse(float amplitude, float duration)
+    {
+        HapticCapabilities capabilities;
+        if (targetDevice.TryGetHapticCapabilities(out capabilities) &&
+            capabilities.supportsImpulse)
+        {
+            return targetDevice.SendHapticImpulse(0, amplitude, duration);
+        }
+        return false;
     }
 }
