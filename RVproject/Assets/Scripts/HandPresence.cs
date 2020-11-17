@@ -119,7 +119,10 @@ public class HandPresence : MonoBehaviour
                     if (Bubble)
                     {
                         BubblePointerScript.ChangeBubble();
+                        // sending success haptics and increasing score
+                        // should be done only when ball is deleted
                         SendHapticImpulse(0.1f, 0.4f);
+                        ChangeCounter.scoreValue += 1;
                     }
                 }
                 PrimaryPressed = true;

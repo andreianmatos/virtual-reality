@@ -3,7 +3,18 @@ guid: 27308dd926f784043907409004fdff2f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ballPrefab: {fileID: 6314596691655106260, guid: 650e295bd570f3f4091aea9e6de55374,
+      type: 3}
+  - ballPrefabMov1: {fileID: 6314596691655106260, guid: 4d5427f9815658c4bbcd0934fee481cb,
+      type: 3}
+  - ballPrefabMov1b: {fileID: 6314596691655106260, guid: 5d9da8ddf6ccbff46b03cbe5e19c593f,
+      type: 3}
+  - ballPrefabMov2: {instanceID: 0}
+  - ballPrefabMov3: {instanceID: 0}
+  - ballPrefabMov3b: {instanceID: 0}
+  - ballPrefabMov4: {instanceID: 0}
+  - ballPrefabMov4b: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
