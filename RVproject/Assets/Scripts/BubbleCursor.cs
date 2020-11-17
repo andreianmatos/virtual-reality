@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -76,6 +76,12 @@ public class BubbleCursor : MonoBehaviour
             GameObject ball = Parent.getNextBall();
             transform.position = ball.transform.position;
         }
-
     }
-}
+
+    public void createBubble()
+    {
+
+        GameObject ball = Parent.getNextBall();
+        transform.position = ball.transform.position;
+    }
+}*/

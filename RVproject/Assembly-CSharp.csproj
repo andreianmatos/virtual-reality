@@ -65,19 +65,25 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BubbleCursor.cs" />
     <Compile Include="Assets\Scripts\BubblePointer.cs" />
+    <Compile Include="Assets\Scripts\ChangeCounter.cs" />
     <Compile Include="Assets\Scripts\HandPresence.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\Movement_1.cs" />
+    <Compile Include="Assets\Scripts\Movement_2.cs" />
     <Compile Include="Assets\Scripts\Movement_3.cs" />
+    <Compile Include="Assets\Scripts\Movment_1.cs" />
     <Compile Include="Assets\Scripts\Pointer.cs" />
     <Compile Include="Assets\Scripts\RayCursor.cs" />
     <Compile Include="Assets\Scripts\SelectionManager.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\XRGUI.cs" />
+    <Compile Include="Assets\Scripts\ballGenerator.cs" />
     <Compile Include="Assets\Scripts\complexSphere.cs" />
     <Compile Include="Assets\Scripts\select.cs" />
+    <Compile Include="Assets\Starfield Skybox\Demo\Script\LookCamera.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\ballGenerator.cs" />
+    <None Include="Assets\Day-Night Skyboxes\Textures\Readme for Assigning.txt" />
+    <None Include="Assets\Day-Night Skyboxes\readme.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

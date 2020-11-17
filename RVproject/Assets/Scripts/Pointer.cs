@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pointer : MonoBehaviour
 {
     public Transform hand_pos;
-    static Color s_UnityMagenta = new Color(0.929f, 0.094f, 0.278f, 0.7f);
+    public Material BallColor;
     static Color s_UnityCyan = new Color(0.019f, 0.733f, 0.827f, 0.8f);
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,7 @@ public class Pointer : MonoBehaviour
             Debug.Log("here");
             // Make the other game object (the pick up) inactive, to make it disappear
             //other.gameObject.SetActive (false);
-            other.gameObject.GetComponent<Renderer>().material.color = s_UnityMagenta;
+            other.gameObject.GetComponent<Renderer>().material.color = BallColor.color;
 
         }
     }

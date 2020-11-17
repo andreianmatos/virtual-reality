@@ -8,7 +8,7 @@ public class RayCursor : MonoBehaviour
     public AudioClip hapticSelect;
 
     static Color s_UnityHighlight = Color.yellow;
-    float rSpeed = 0.1f;
+    float rSpeed = 0.5f;
     static Color s_UnityCyan = new Color(0.019f, 0.733f, 0.827f, 0.5f);
     GameObject nearestBall;
 
@@ -50,14 +50,14 @@ public class RayCursor : MonoBehaviour
         }
     }
 
-    public void onTriggerSelect()
+    public void OnTriggerSelect()
     {
         if (nearestBall != null)
             Destroy(nearestBall);
         nearestBall = null;
     }
 
-        public void changePosition(Vector2 axis2d)
+    public void ChangePosition(Vector2 axis2d)
     {
         Vector3 movement = new Vector3(0.0f, 1.0f, 0.0f);
         //Vector3 direction = transform.parent.parent.rotation.eulerAngles;

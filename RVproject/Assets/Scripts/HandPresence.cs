@@ -15,8 +15,15 @@ public class HandPresence : MonoBehaviour
     private InputDevice targetDevice;
     private GameObject spawnedHandModel;
     private Animator handAnimator;
-    private GameObject RayCursor;
-    private RayCursor RayCursorScript;
+    private GameObject BubblePointer, RayPointer;
+    private BubblePointer BubblePointerScript;
+    private RayCursor DepthRayScript;
+
+    private bool TriggerPressed = false;
+    private bool PrimaryPressed = false;
+
+    public bool Bubble = false;
+    public bool DepthRay = true;
 
     // Start is called before the first frame update
     void Start()
@@ -53,8 +60,16 @@ public class HandPresence : MonoBehaviour
 
             }
         }
-        RayCursor = GameObject.Find("DepthRay/RayCursor");
-        RayCursorScript = RayCursor.GetComponent<RayCursor>();
+        if (Bubble)
+        {
+            BubblePointer = GameObject.Find("BubblePointer");
+            BubblePointerScript = BubblePointer.GetComponent<BubblePointer>();
+        }
+        else
+        {
+            RayPointer = GameObject.Find("DepthRay/RayCursor");
+            DepthRayScript = RayPointer.GetComponent<RayCursor>();
+        }
         //spawnedHandModel = Instantiate(controllerPrefabs[0], transform);
         //handAnimator = spawnedHandModel.GetComponent<Animator>();
 
@@ -62,7 +77,7 @@ public class HandPresence : MonoBehaviour
 
     void UpdateHandAnimation()
     {
-        if(targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue))
+        if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue))
         {
             handAnimator.SetFloat("Trigger", triggerValue);
         }
@@ -91,20 +106,52 @@ public class HandPresence : MonoBehaviour
             if (targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 primary2DAxisValue) && primary2DAxisValue != Vector2.zero)
             {
                 Debug.Log("Primary Touchedpad  " + primary2DAxisValue);
-                RayCursorScript.changePosition(primary2DAxisValue);
+                if (DepthRay)
+                {
+                    DepthRayScript.ChangePosition(primary2DAxisValue);
+                }
             }
 
-            /*targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue);
-            if (primaryButtonValue)
-                Debug.Log("Pressing Primary Button " + primaryButtonValue);*/
-
-            if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0.1f)
+            if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue)
             {
-                Debug.Log("Trigger pressed " + triggerValue);
-                SendHapticImpulse(0.5f,1);
-                RayCursorScript.onTriggerSelect();
+                if (!PrimaryPressed)
+                {
+                    if (Bubble)
+                    {
+                        BubblePointerScript.ChangeBubble();
+                        SendHapticImpulse(0.1f, 0.4f);
+                    }
+                }
+                PrimaryPressed = true;
             }
-            
+            else
+            {
+                PrimaryPressed = false;
+            }
+
+            if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0.5f)
+            {
+                if (!TriggerPressed)
+                {
+                    if (Bubble)
+                    {
+                        Debug.Log("Trigger pressed " + triggerValue);
+                        SendHapticImpulse(0.5f, 0.7f);
+                        BubblePointerScript.OnTriggerSelect();
+                    }
+                else if (DepthRay)
+                    {
+                        SendHapticImpulse(0.5f, 0.7f);
+                        DepthRayScript.OnTriggerSelect();
+                    }
+                }
+                TriggerPressed = true;
+            }
+            else
+            {
+                TriggerPressed = false;
+            }
+
         }
 
     }
@@ -119,3 +166,4 @@ public class HandPresence : MonoBehaviour
         return false;
     }
 }
+
