@@ -6,12 +6,15 @@ public class Mov3 : MonoBehaviour{
 
 
     public float speed = 2.5f;
+    float x, y, z;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        x = transform.position.x;
+        y = transform.position.y;
+        z = transform.position.z;
         transform.position = new Vector3(0, 0, 0);
     }
 
@@ -19,8 +22,13 @@ public class Mov3 : MonoBehaviour{
     void Update()
     {
 
-        transform.position = new Vector3(transform.position.x, Mathf.PingPong(Time.time * speed, 3), transform.position.z);
-        transform.position = new Vector3(Mathf.PingPong(Time.time * speed, 5), transform.position.y, transform.position.z);
+        transform.position = new Vector3(x, Mathf.PingPong(Time.time * speed, 3), z);
+        transform.position = new Vector3(Mathf.PingPong(Time.time * speed, 5), y, z);
 
     }
+    public void setSpeed(float s)
+    {
+        speed = s;
+    }
+
 }

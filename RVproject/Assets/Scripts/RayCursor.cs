@@ -61,9 +61,9 @@ public class RayCursor : MonoBehaviour
     {
         Vector3 movement = new Vector3(0.0f, 1.0f, 0.0f);
         //Vector3 direction = transform.parent.parent.rotation.eulerAngles;
-        if (axis2d.x > 0.1f)
+        if (axis2d.y > 0.1f)
             transform.Translate(rSpeed * movement.normalized * axis2d.x, transform.parent);
-        else if (axis2d.x < -0.1f)
+        else if (axis2d.y < -0.1f)
             transform.Translate(rSpeed * movement.normalized * axis2d.x, transform.parent);
 
     }

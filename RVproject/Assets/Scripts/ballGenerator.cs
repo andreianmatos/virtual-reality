@@ -33,70 +33,70 @@ public class ballGenerator : MonoBehaviour
         {
             float x = Random.Range(-5f, 5f);
             float y = Random.Range(-2f, 4f);
-            float z = Random.Range(4f, 15f);
+            float z = Random.Range(4f, 10f);
             Instantiate(ballPrefab, new Vector3(x, y, z), Quaternion.identity);
         }
         for (int i = 0; i < nrMov1Balls; i++)
         {
             float x = Random.Range(-5f, 5f);
             float y = Random.Range(-2f, 4f);
-            float z = Random.Range(4f, 15f);
+            float z = Random.Range(4f, 10f);
             Instantiate(ballPrefabMov1, new Vector3(x, y, z), Quaternion.identity);
         }
         for (int i = 0; i < nrMov1bBalls; i++)
         {
             float x = Random.Range(-5f, 5f);
             float y = Random.Range(-2f, 4f);
-            float z = Random.Range(4f, 15f);
+            float z = Random.Range(4f, 10f);
             Instantiate(ballPrefabMov1b, new Vector3(x, y, z), Quaternion.identity);
         }
         for (int i = 0; i < nrMov2Balls; i++)
         {
             float x = Random.Range(-5f, 5f);
             float y = Random.Range(-2f, 4f);
-            float z = Random.Range(4f, 15f);
+            float z = Random.Range(4f, 10f);
             Instantiate(ballPrefabMov2, new Vector3(x, y, z), Quaternion.identity);
         }
         for (int i = 0; i < nrMov2bBalls; i++)
         {
             float x = Random.Range(-5f, 5f);
             float y = Random.Range(-2f, 4f);
-            float z = Random.Range(4f, 15f);
+            float z = Random.Range(4f, 10f);
             Instantiate(ballPrefabMov2b, new Vector3(x, y, z), Quaternion.identity);
         }
         for (int i = 0; i < nrMov3Balls; i++)
         {
             float x = Random.Range(-5f, 5f);
             float y = Random.Range(-2f, 4f);
-            float z = Random.Range(4f, 15f);
+            float z = Random.Range(4f, 10f);
             Instantiate(ballPrefabMov3, new Vector3(x, y, z), Quaternion.identity);
         }
         for (int i = 0; i < nrMov3bBalls; i++)
         {
             float x = Random.Range(-5f, 5f);
             float y = Random.Range(-2f, 4f);
-            float z = Random.Range(4f, 15f);
+            float z = Random.Range(4f, 10f);
             Instantiate(ballPrefabMov3b, new Vector3(x, y, z), Quaternion.identity);
         }
         for (int i = 0; i < nrMov4Balls; i++)
         {
             float x = Random.Range(-5f, 5f);
             float y = Random.Range(-2f, 4f);
-            float z = Random.Range(4f, 15f);
+            float z = Random.Range(4f, 10f);
             Instantiate(ballPrefabMov4, new Vector3(x, y, z), Quaternion.identity);
         }
         for (int i = 0; i < nrMov4bBalls; i++)
         {
             float x = Random.Range(-5f, 5f);
             float y = Random.Range(-2f, 4f);
-            float z = Random.Range(4f, 15f);
+            float z = Random.Range(4f, 10f);
             Instantiate(ballPrefabMov4b, new Vector3(x, y, z), Quaternion.identity);
         }
         for (int i = 0; i < nrMov5Balls; i++)
         {
             float x = Random.Range(-5f, 5f);
             float y = Random.Range(-2f, 4f);
-            float z = Random.Range(8f, 15f);
+            float z = Random.Range(8f, 10f);
             Instantiate(ballPrefabMov5, new Vector3(x, y, z), Quaternion.identity);
         }
     }

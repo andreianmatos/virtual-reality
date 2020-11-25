@@ -15,15 +15,15 @@ public class HandPresence : MonoBehaviour
     private InputDevice targetDevice;
     private GameObject spawnedHandModel;
     private Animator handAnimator;
-    private GameObject BubblePointer, RayPointer;
-    private BubblePointer BubblePointerScript;
-    private RayCursor DepthRayScript;
+    private GameObject BubblePointer = null, RayPointer = null;
+    private BubblePointer BubblePointerScript = null;
+    private RayCursor DepthRayScript = null;
 
     private bool TriggerPressed = false;
     private bool PrimaryPressed = false;
 
-    public bool Bubble = false;
-    public bool DepthRay = true;
+    private bool Bubble = false;
+    private bool DepthRay = true;
 
     // Start is called before the first frame update
     void Start()
@@ -65,11 +65,12 @@ public class HandPresence : MonoBehaviour
             BubblePointer = GameObject.Find("BubblePointer");
             BubblePointerScript = BubblePointer.GetComponent<BubblePointer>();
         }
-        else
+        else if (DepthRay)
         {
             RayPointer = GameObject.Find("DepthRay/RayCursor");
             DepthRayScript = RayPointer.GetComponent<RayCursor>();
         }
+
         //spawnedHandModel = Instantiate(controllerPrefabs[0], transform);
         //handAnimator = spawnedHandModel.GetComponent<Animator>();
 
@@ -119,10 +120,7 @@ public class HandPresence : MonoBehaviour
                     if (Bubble)
                     {
                         BubblePointerScript.ChangeBubble();
-                        // sending success haptics and increasing score
-                        // should be done only when ball is deleted
                         SendHapticImpulse(0.1f, 0.4f);
-                        ChangeCounter.scoreValue += 1;
                     }
                 }
                 PrimaryPressed = true;
@@ -142,7 +140,7 @@ public class HandPresence : MonoBehaviour
                         SendHapticImpulse(0.5f, 0.7f);
                         BubblePointerScript.OnTriggerSelect();
                     }
-                else if (DepthRay)
+                    else if (DepthRay)
                     {
                         SendHapticImpulse(0.5f, 0.7f);
                         DepthRayScript.OnTriggerSelect();
