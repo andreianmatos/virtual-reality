@@ -1,4 +1,4 @@
-# virtual-reality
+# Virtual Reality Masters Year 1 Semester 1 2021
 
 This project was developed in the context of the Master's subject Virtual Reality, in IST ULisboa.
 
